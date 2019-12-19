@@ -1,0 +1,8 @@
+<li [ngClass]="{ 'completed': todo.completed, 'editing': editing }">
+    <div class="view">
+      <input aria-label="Mark as complete" class="toggle" (change)="complete()" [attr.checked]="todo.completed" type="checkbox">
+      <label (dblclick)="edit()">{{ todo.text }}</label>
+      <button aria-label="Clear item" class="destroy" (click)="remove()"></button>
+    </div>
+    <app-labcorp-todos-form *ngIf="editing" [index]="index" [todo]="todo" (updated)="onUpdate($event)"></app-labcorp-todos-form>
+  </li>

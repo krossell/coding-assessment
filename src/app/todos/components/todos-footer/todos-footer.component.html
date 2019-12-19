@@ -1,0 +1,12 @@
+
+<footer *ngIf="numberOfTodos" class="footer">
+    <span class="todo-count">{{ countString }}</span>
+    <ul class="filters">
+      <li *ngFor="let filter of filters; let i = index;">
+        <a href
+           [ngClass]="{ 'selected': selectedFilter === filter }"
+           (click)="selectFilter(filters[i], $event)">{{ filter }}</a>
+      </li>
+    </ul>
+    <button *ngIf="completedExist" class="clear-completed" (click)="clearCompleted()">Clear completed</button>
+  </footer>

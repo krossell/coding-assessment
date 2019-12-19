@@ -12,11 +12,17 @@ import * as todoSelectors from '../state/todo.selectors';
 export class TodosService {
 
   allTodos$: Observable<ITodo[]>;
+  filteredTodosList$: Observable<ITodo[]>;
+  allActiveTodos$: Observable<ITodo[]>;
+  allFilterModes$: Observable<FILTER_MODES>;
 
   constructor(
     private store: Store<ITodosState>,
   ) {
     this.allTodos$ = this.store.select(todoSelectors.allTodos);
+    this.allFilterModes$ = this.store.select(todoSelectors.filterMode);
+    this.allActiveTodos$ = this.store.select(todoSelectors.activeTodosList);
+    this.filteredTodosList$ = this.store.select(todoSelectors.filteredTodosList);
   }
 
   addTodo(text: string): void {
@@ -35,8 +41,8 @@ export class TodosService {
     this.store.dispatch(TodoActions.toggleAllCompleted());
   }
 
-  updateTodo(index: number, text: string): void {
-    this.store.dispatch(TodoActions.updateTodo({ index, text }));
+  updateTodo(index: number, text: string, status: boolean): void {
+    this.store.dispatch(TodoActions.updateTodo({ index, text, status }));
   }
 
   changeFilterMode(mode: FILTER_MODES): void {

@@ -1,9 +1,7 @@
-<ul class="todo-list">
-  <li>
-    <div class="view">
-      <input class="toggle" type="checkbox" />
-      <label></label>
-      <button class="destroy"></button>
-    </div>
-  </li>
+<ul *ngIf="todoList" class="todo-list">
+  <app-labcorp-todo-item *ngFor="let todo of todoList; let i = index;"
+                 [index]="i"
+                 [todo]="todo"
+                 (removeTodoItem)="removeTodoItem($event)" 
+                 (completeTodoItem)="completeTodoItem($event)"></app-labcorp-todo-item>
 </ul>

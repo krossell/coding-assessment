@@ -37,6 +37,44 @@ export function todosReducer(state: ITodosState, action: Action) {
       ...existingState,
       todos: [...existingState.todos.filter(todo => !todo.completed)],
     })),
+    // add reducers for other operations
+    on(TodoActions.toggleCompleted, (existingState, { index }) => {
+      return {
+        ...existingState,
+        todos: existingState.todos.map(
+          (todo, i) => i === index ? {...todo, completed: !todo.completed} : todo
+        )
+      } as ITodosState;
+    }),
+    on(TodoActions.updateTodo, (existingState, { index, text }) => {
+      return {
+        ...existingState,
+        todos: existingState.todos.map(
+          (todo, i) => i === index ? {...todo, text: text} : todo
+        )
+      } as ITodosState;
+    }),
+    on(TodoActions.toggleAllCompleted, (existingState) => {
+      // If there exists at least one non-complete todo, mark them all complete;
+      // otherwise, mark them all incomplete:
+      const activeTodoExists: boolean = existingState.todos.findIndex(todo => !todo.completed) > -1;
+
+      return Object.assign({}, existingState, {
+        todos: [...existingState.todos.map(todo => {
+          const todoObj = {...todo};
+          todoObj.completed = activeTodoExists;
+          return todoObj;
+        })]
+      } as ITodosState);
+    }),
+    on(TodoActions.toggleCompleted, (existingState, { index }) => {
+      return {
+        ...existingState,
+        todos: existingState.todos.map(
+          (todo, i) => i === index ? {...todo, completed: !todo.completed} : todo
+        )
+      } as ITodosState;
+    })
   )(state, action);
 }
 

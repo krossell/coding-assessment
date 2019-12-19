@@ -1,0 +1,3 @@
+<form [formGroup]="todosFormComp" (ngSubmit)="submit()" novalidate>
+    <input formControlName="text" #todosInputField [class]="editOrInput" (keyup.enter)="submit()" aria-labelledby="todo-text" placeholder="What needs to be done?">
+  </form>

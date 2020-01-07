@@ -38,14 +38,7 @@ export function todosReducer(state: ITodosState, action: Action) {
       todos: [...existingState.todos.filter(todo => !todo.completed)],
     })),
     // add reducers for other operations
-    on(TodoActions.toggleCompleted, (existingState, { index }) => {
-      return {
-        ...existingState,
-        todos: existingState.todos.map(
-          (todo, i) => i === index ? {...todo, completed: !todo.completed} : todo
-        )
-      } as ITodosState;
-    }),
+
     on(TodoActions.updateTodo, (existingState, { index, text }) => {
       return {
         ...existingState,

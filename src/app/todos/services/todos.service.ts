@@ -41,8 +41,8 @@ export class TodosService {
     this.store.dispatch(TodoActions.toggleAllCompleted());
   }
 
-  updateTodo(index: number, text: string, status: boolean): void {
-    this.store.dispatch(TodoActions.updateTodo({ index, text, status }));
+  updateTodo(index: number, text: string, completed: boolean): void {
+    this.store.dispatch(TodoActions.updateTodo({ index, text, completed }));
   }
 
   changeFilterMode(mode: FILTER_MODES): void {

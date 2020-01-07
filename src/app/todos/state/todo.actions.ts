@@ -18,7 +18,7 @@ export const editTodo = createAction(
 
 export const updateTodo = createAction(
   '[Todos] Update Todo',
-  props<{ index: number, text: string, status: boolean }>(),
+  props<{ index: number, text: string, completed: boolean }>(),
 );
 
 export const toggleCompleted = createAction(

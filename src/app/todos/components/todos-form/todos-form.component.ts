@@ -53,8 +53,8 @@ export class TodosFormComponent implements AfterViewInit, OnInit {
     }
 
     if (this.todo) {
-      const completedStatus: boolean = this.todo.completed ? true : false;
-      this.todosService.updateTodo(this.index, this.todosFormComp.value.text, completedStatus);
+      const completed: boolean = this.todo.completed ? true : false;
+      this.todosService.updateTodo(this.index, this.todosFormComp.value.text, completed);
       this.updated.emit(true);
     } else {
       this.todosService.addTodo(this.todosFormComp.value.text);

@@ -33,7 +33,7 @@ export const activeTodosList = createSelector(
     return todoList && todoList.filter(todo => !todo.completed);
   }
 );
-
+    
 export const filteredTodosList = createSelector(
   filterMode,
   allTodos,
